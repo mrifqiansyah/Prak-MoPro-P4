@@ -123,7 +123,7 @@ class _NotesHomeState extends State<NotesHome> {
                                   actions: [
                                     TextButton(onPressed: () => Navigator.pop(context), child: Text("Batal")),
                                     TextButton(
-                                      onPressed: () => {
+                                      onPressed: () {
                                         // Isi Logic 3
                                       },
                                       child: Text(
@@ -145,7 +145,7 @@ class _NotesHomeState extends State<NotesHome> {
                                   actions: [
                                     TextButton(onPressed: () => Navigator.pop(context), child: Text("Batal")),
                                     TextButton(
-                                      onPressed: () => {
+                                      onPressed: () {
                                         // Isi Logic 4
                                       },
                                       child: Text(
