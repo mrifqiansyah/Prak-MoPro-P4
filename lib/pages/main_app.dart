@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_10/pages/notes_app/notes_home.dart';
+import 'package:flutter_application_10/pages/contact_app/contact_home.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -64,7 +65,11 @@ class MainApp extends StatelessWidget {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                await Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ContactHome())
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red[800],
                 foregroundColor: Colors.white,
