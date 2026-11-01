@@ -1,20 +1,25 @@
 PROJECT STRUCTURE & FILE GUIDE:
 
 1. File Konfigurasi & Setup Utama (Root Directory)
-- pubspec.yaml: File konfigurasi utama proyek Flutter yang berisi daftar dependensi/package pihak ketiga (seperti shared_preferences dan hive_flutter), konfigurasi asset, font, serta versi SDK Dart.
-- analysis_options.yaml: Mengatur aturan linter dan analisis statis kode agar penulisan kode sesuai dengan standar kualitas Flutter/Dart.
+- pubspec.yaml: File konfigurasi utama proyek Flutter yang berisi daftar dependensi (shared_preferences, hive_flutter, sqflite, path, sqflite_common_ffi), konfigurasi asset, serta versi SDK Dart.
+- analysis_options.yaml: Mengatur aturan linter dan analisis statis kode standar Flutter/Dart.
 
 2. Titik Masuk & Menu Utama (lib/)
-- lib/main.dart: Titik masuk utama (entry point) aplikasi. Berisi fungsi main() tempat inisialisasi awal seperti WidgetsFlutterBinding.ensureInitialized(), inisialisasi Hive, serta menjalankan root widget (MyApp).
-- lib/pages/main_app.dart: Halaman menu utama (MainApp). Menampilkan antarmuka navigasi awal yang memberikan pilihan tombol untuk membuka aplikasi catatan (Notes App) atau aplikasi kontak (Contact App).
+- lib/main.dart: Titik masuk utama aplikasi (entry point). Mengatur binding asynchronous, inisialisasi SQFlite FFI (untuk desktop), inisialisasi Hive Box ('contacts_box'), dan memuat root widget MyApp.
+- lib/pages/main_app.dart: Menu utama (MainApp) untuk navigasi ke 3 modul implementasi local storage: Notes App (SharedPreferences), Contact App (Hive), dan Task App (SQFlite).
 
 3. Modul Notes App (lib/pages/notes_app/)
-- lib/pages/notes_app/notes_home.dart: Halaman utama untuk pencatatan (Notes). Mengimplementasikan penyimpanan lokal SharedPreferences (getStringList & setStringList) untuk melakukan operasi CRUD (Create, Read, Update, Delete) catatan secara persisten.
+- lib/pages/notes_app/notes_home.dart: Implementasi penyimpanan key-value SharedPreferences untuk CRUD catatan teks.
 
 4. Modul Contact App & Model (lib/pages/contact_app/ & lib/data/)
-- lib/pages/contact_app/contact_home.dart: Halaman utama manajemen kontak. Berinteraksi langsung dengan Hive Box (contacts_box) untuk melakukan operasi CRUD data kontak (nama dan nomor telepon) secara lokal dan reaktif.
-- lib/data/contact.dart: Model data (Blueprint / class) untuk objek Contact yang merepresentasikan struktur data kontak (memiliki properti name dan telephone).
+- lib/data/contact.dart: Model objek data kontak (nama dan nomor telepon).
+- lib/pages/contact_app/contact_home.dart: Implementasi NoSQL Box Hive untuk CRUD kontak secara reaktif.
 
-5. Pengujian & Konfigurasi Platform
-- test/widget_test.dart: File pengujian otomatis (widget test) bawaan Flutter untuk menguji komponen UI atau fasa widget.
-- Folder Platform (android/, ios/, windows/, macos/, web/, linux/): Berisi file konfigurasi spesifik platform agar aplikasi Flutter dapat dikompilasi dan dijalankan di berbagai sistem operasi.
+5. Modul Task App & Database SQLite (lib/pages/sqflite_app/, lib/services/, & lib/data/)
+- lib/data/task_model.dart: Model data Task (id, title, description, created_at) beserta method mapping `fromMap()` dan `toMap()`.
+- lib/services/database_helper.dart: Singleton Database Helper untuk inisialisasi SQLite database, pembuatan skema tabel DDL, dan fungsi CRUD (insertTask, getTasks, updateTask, deleteTask).
+- lib/pages/sqflite_app/sqflite_home.dart: Halaman UI interaktif untuk menguji operasi CRUD SQLite secara langsung.
+
+6. Pengujian & Dokumentasi
+- test/widget_test.dart: Widget test untuk memverifikasi fungsionalitas UI menu utama.
+- DOKUMENTASI_LOCAL_STORAGE.md: Dokumentasi lengkap komparasi SQFlite vs Alternatif (Hive & SharedPreferences) dan panduan laporan praktikum.

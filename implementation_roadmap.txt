@@ -1,33 +1,32 @@
 IMPLEMENTATION ROADMAP & DEVELOPMENT PHASES:
 
-Tahap 1: Persiapan & Konfigurasi Dependensi
-- Menambahkan package `shared_preferences` dan `hive_flutter` ke dalam file `pubspec.yaml`.
-- Menjalankan perintah `flutter pub get` untuk menginstal seluruh dependensi yang dibutuhkan proyek.
+Tahap 1: Konfigurasi Dependensi
+- Menambahkan dependensi package ke `pubspec.yaml`:
+  * `shared_preferences` untuk penyimpanan key-value.
+  * `hive` dan `hive_flutter` untuk penyimpanan NoSQL Box.
+  * `sqflite`, `path`, dan `sqflite_common_ffi` untuk database relasional SQLite.
+- Menjalankan `flutter pub get`.
 
-Script Perintah Instalasi Dependensi Lengkap:
-```bash
-# Menambahkan package SharedPreferences untuk Notes App
-flutter pub add shared_preferences
+Tahap 2: Inisialisasi Database Lokal di lib/main.dart
+- Menjalankan `WidgetsFlutterBinding.ensureInitialized()`.
+- Menyiapkan FFI loader SQFlite untuk dukungan desktop.
+- Menginisialisasi Hive Flutter dan membuka Box (`contacts_box`).
 
-# Menambahkan package Hive dan Hive Flutter untuk Contact App
-flutter pub add hive
-flutter pub add hive_flutter
+Tahap 3: Modul 1 - Notes App (SharedPreferences)
+- Penyimpanan berbasis key-value (`getStringList` & `setStringList`).
+- Operasi CRUD catatan sederhana di `lib/pages/notes_app/notes_home.dart`.
 
-# Mengunduh dan memperbarui semua dependensi proyek
-flutter pub get
-```
+Tahap 4: Modul 2 - Contact App (Hive)
+- Penyimpanan NoSQL berbasis Box.
+- Operasi CRUD data kontak (nama, nomor telepon) di `lib/pages/contact_app/contact_home.dart`.
 
-Tahap 2: Inisialisasi Database Lokal
-- Menyiapkan inisialisasi asynchronous di dalam fungsi `main()` pada file `lib/main.dart`.
-- Menjalankan `Hive.initFlutter()` dan membuka Hive Box (`contacts_box`) sebelum aplikasi dirender.
+Tahap 5: Modul 3 - Task App (SQFlite)
+- Pembuatan model data relasional di `lib/data/task_model.dart`.
+- Pembuatan helper database dan skema tabel SQL di `lib/services/database_helper.dart`.
+- Operasi CRUD lengkap (Insert, Query, Update, Delete) di `lib/pages/sqflite_app/sqflite_home.dart`.
 
-Tahap 3: Implementasi Notes App (SharedPreferences)
-- Membangun logika penyimpanan lokal berbasis Key-Value untuk catatan di `lib/pages/notes_app/notes_home.dart`.
-- Mengimplementasikan fungsi pemuatan (`_loadNotes`), penyimpanan (`_saveNotes`), serta operasi CRUD (Tambah, Update, Hapus).
+Tahap 6: Menu Utama & Navigasi
+- Memperbarui `lib/pages/main_app.dart` dengan navigasi ke ketiga teknologi storage.
 
-Tahap 4: Implementasi Contact App (Hive)
-- Membangun sistem penyimpanan data terstruktur NoSQL Box di `lib/pages/contact_app/contact_home.dart`.
-- Menghubungkan form input nama dan nomor telepon dengan Hive Box untuk operasi CRUD reaktif (`add`, `putAt`, `deleteAt`).
-
-Tahap 5: Verifikasi & Pengujian Akhir
-- Memeriksa kelayakan kode, integritas penyimpanan data, serta memastikan aplikasi dapat dikompilasi dan berjalan dengan mulus di perangkat/emulator.
+Tahap 7: Dokumentasi & Uji Coba
+- Pembuatan berkas laporan `DOKUMENTASI_LOCAL_STORAGE.md` berisi perbandingan SQFlite vs Hive vs SharedPreferences, struktur tabel, dan panduan presentasi/tugas praktikum.

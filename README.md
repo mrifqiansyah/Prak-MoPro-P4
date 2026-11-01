@@ -1,16 +1,40 @@
-# flutter_application_10
+# Praktikum Mobile Programming - Pertemuan 4 (Local Storage)
+**Universitas Pakuan - Laboratorium Ilmu Komputer**
 
-A new Flutter project.
+Repository tugas praktikum mobile programming pertemuan ke-4 mengenai eksplorasi dan perbandingan teknologi **Local Storage** pada Flutter:
+1. **SQFlite (SQLite Relational Database)** — Modul *Task App* (CRUD lengkap dengan Primary Key, Skema DDL, dan Async Database Helper).
+2. **Hive (NoSQL Box Storage)** — Modul *Contact App* (Penyimpanan box objek/map reaktif super cepat).
+3. **SharedPreferences (Key-Value Storage)** — Modul *Notes App* (Penyimpanan list catatan teks persisten).
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📖 Dokumentasi Lengkap
+Seluruh dokumentasi, analisis komparatif, arsitektur skema tabel, dan hasil uji coba dapat dilihat pada file:
+👉 [**DOKUMENTASI_LOCAL_STORAGE.md**](DOKUMENTASI_LOCAL_STORAGE.md)
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 Cara Menjalankan Proyek
+1. Clone repositori:
+   ```bash
+   git clone <repo-url>
+   cd p4.mobpro
+   ```
+2. Pasang dependensi:
+   ```bash
+   flutter pub get
+   ```
+3. Jalankan aplikasi:
+   - **Di Desktop Windows:**
+     ```powershell
+     flutter run -d windows
+     ```
+   - **Di Emulator / Perangkat Android:**
+     ```bash
+     flutter run
+     ```
+   - **Di Browser Brave / Web:**
+     ```powershell
+     $env:CHROME_EXECUTABLE = "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+     flutter run -d chrome
+     ```
