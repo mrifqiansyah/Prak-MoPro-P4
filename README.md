@@ -8,12 +8,6 @@ Repository tugas praktikum mobile programming pertemuan ke-4 mengenai eksplorasi
 
 ---
 
-## 📖 Dokumentasi Lengkap
-Seluruh dokumentasi, analisis komparatif, arsitektur skema tabel, dan hasil uji coba dapat dilihat pada file:
-👉 [**DOKUMENTASI_LOCAL_STORAGE.md**](DOKUMENTASI_LOCAL_STORAGE.md)
-
----
-
 ## 🚀 Cara Menjalankan Proyek
 1. Clone repositori:
    ```bash
